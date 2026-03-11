@@ -1,16 +1,16 @@
 package org.example.models;
 
 public class User {
-    private long id;
+    private long userId;
     private String username;
     private String password;
     private String email;
 
-    public User(String username, String password, String email, long id) {
+    public User(String username, String password, String email, long userId) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.id = id;
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -37,12 +37,12 @@ public class User {
         this.email = email;
     }
 
-    public long getId() {
-        return id;
-    }  
+    public long getUserId() {
+        return userId;
+    }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class User {
         return "User{" +
                 "username='" + username + '\'' +
                 ", email='" + email + '\'' +
-                ", id=" + id +
+                ", userId=" + userId +
                 '}';
     }
 }

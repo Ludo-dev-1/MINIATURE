@@ -71,7 +71,7 @@ public class AuthenticateController extends HttpServlet {
                 if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
 
                     req.getSession().setAttribute("currentUser", user);
-                    resp.sendRedirect(req.getContextPath() + "/feed.jsp");
+                    resp.sendRedirect(req.getContextPath() + "/feed");
                     return;
                 }
             }
