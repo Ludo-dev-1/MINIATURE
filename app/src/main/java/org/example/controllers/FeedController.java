@@ -1,7 +1,7 @@
 package org.example.controllers;
 
 import java.io.IOException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -19,15 +19,15 @@ import jakarta.servlet.http.HttpServletResponse;
 public class FeedController extends HttpServlet {
 
     private List<Post> posts = new ArrayList<>(List.of(
-            new Post("Test post ", 1, 1, LocalDate.of(2023, 6, 26)),
-            new Post("Admin post", 2, 2, LocalDate.of(2024, 6, 26)),
+            new Post("Test post ", 1, 1, LocalDateTime.of(2023, 6, 26, 10, 0), "User1"),
+            new Post("Admin post", 2, 2, LocalDateTime.of(2024, 6, 26, 12, 0), "User2"),
             new Post("Aujourd’hui j’ai commencé à travailler sur mon mini réseau social en Java avec Servlets et JSP. "
                     + "C’est intéressant de voir comment fonctionne l’architecture MVC côté serveur. "
                     + "J’ai réussi à gérer l’authentification des utilisateurs et maintenant je travaille sur le feed de posts. "
                     + "Prochaine étape : ajouter les likes et les commentaires !",
-                    1, 3, LocalDate.of(2025, 6, 26)),
+                    1, 3, LocalDateTime.of(2025, 6, 26, 14, 0), "User1"),
             new Post("Je viens de terminer la fonctionnalité de feed pour mon mini réseau social en Java. ", 1, 1,
-                    LocalDate.of(2024, 6, 26))
+                    LocalDateTime.of(2024, 6, 26, 16, 0), "User1")
 
     ));
 
@@ -35,6 +35,15 @@ public class FeedController extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+
+        List<User> users = (List<User>) getServletContext().getAttribute("users");
+        for (Post post : posts) {
+            for (User user : users) {
+                if (user.getUserId() == post.getUserId()) {
+                    post.setAuthorName(user.getUsername());
+                }
+            }
+        }
 
         posts.sort(Comparator.comparing(Post::getCreatedAt).reversed());
 
@@ -56,7 +65,7 @@ public class FeedController extends HttpServlet {
         long userId = currentUser.getUserId();
 
         if (content != null && !content.trim().isEmpty()) {
-            Post newPost = new Post(content, userId, posts.size() + 1, LocalDate.now());
+            Post newPost = new Post(content, userId, posts.size() + 1, LocalDateTime.now(), currentUser.getUsername());
             posts.add(newPost);
         }
 

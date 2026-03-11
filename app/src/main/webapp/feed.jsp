@@ -8,7 +8,7 @@
 <html>
 <head>  
     <title>Home - MINIATURE</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="/style/styles.css">
 </head>
 <body>  
     <h1>Bienvenue sur MINIATURE</h1>
@@ -24,12 +24,13 @@ if (posts != null) {
     for (Post post : posts) {
 %>
 
-<div class="post">
+<article class="post">
+    <p><small>Posté par <%= post.getAuthorName() %> le <%= post.getCreatedAt().toLocalDate() %></small></p>
     <p><%= post.getContent() %></p>
-    <p><small>Posté le <%= post.getCreatedAt().toString() %></small></p>
+
     <button name="like">&#129293; Like </button>
     <button name="comment">&#128172; Comment</button>
-</div>
+</article>
 
 <%
     } 
