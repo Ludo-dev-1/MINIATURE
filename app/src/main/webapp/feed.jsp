@@ -8,7 +8,7 @@
 <html>
 <head>  
     <title>Home - MINIATURE</title>
-    <link rel="stylesheet" type="text/css" href="/style/styles.css">
+    <link rel="stylesheet" type="text/css" href="./style/feed.css">
 </head>
 <body>  
     <h1>Bienvenue sur MINIATURE</h1>
@@ -25,6 +25,7 @@ if (posts != null) {
 %>
 
 <article class="post">
+    <button> Suivre </button>
     <p><small>Posté par <%= post.getAuthorName() %> le <%= post.getCreatedAt().toLocalDate() %></small></p>
     <p><%= post.getContent() %></p>
 

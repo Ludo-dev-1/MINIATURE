@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Register - MINIATURE</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>MINIATURE</title>
+    <link rel="stylesheet" type="text/css" href="./style/register.css">
 </head>
 <body>
-    <h1>Register for MINIATURE</h1>
+    <h1>Créer un compte</h1>
     <form action="register" method="post">
         <label for="username">Username:</label><br>
         <input type="text" id="username" name="username" required><br><br>
