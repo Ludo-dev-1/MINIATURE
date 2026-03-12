@@ -20,6 +20,9 @@ public class AuthenticateController extends HttpServlet {
     public void init() {
         users.add(new User("test", "test123", "test@example.com", 1));
         users.add(new User("admin", "admin123", "admin@example.com", 2));
+        users.add(new User("Kevin", "user123", "user@user.com", 3));
+        users.add(new User("Fabien", "user456", "user2@user.com", 4));
+        users.add(new User("Eric", "user789", "user3@user.com", 5));
 
         getServletContext().setAttribute("users", users);
     }

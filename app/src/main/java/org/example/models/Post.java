@@ -9,13 +9,15 @@ public class Post {
     private long userId;
     private LocalDateTime  createdAt;
     private String authorName;
+    private boolean following;
 
-    public Post(String content, long userId, long id, LocalDateTime  createdAt, String authorName) {
+    public Post(String content, long userId, long id, LocalDateTime  createdAt, String authorName, boolean following) {
         this.content = content;
         this.userId = userId;
         this.id = id;
         this.createdAt = createdAt;
         this.authorName = authorName;
+        this.following = following;
     }
 
     public String getContent() {
@@ -41,4 +43,17 @@ public class Post {
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
     }
+
+    public boolean isFollowing() {
+        return following;
+    }
+
+    public void setFollowing(boolean following) {
+        this.following = following;
+    }
+
+    public void toggleFollowing() {
+        this.following = !this.following;
+    }
+
 }

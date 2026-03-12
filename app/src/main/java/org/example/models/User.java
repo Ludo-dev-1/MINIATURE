@@ -1,10 +1,16 @@
 package org.example.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     private long userId;
     private String username;
     private String password;
     private String email;
+    private List<Long> following = new ArrayList<>();
+
+
 
     public User(String username, String password, String email, long userId) {
         this.username = username;
@@ -43,6 +49,20 @@ public class User {
 
     public void setUserId(long userId) {
         this.userId = userId;
+    }
+
+    public List<Long> getFollowing() {
+        return following;
+    }
+
+    public void follow(long userId) {
+        if (!following.contains(userId)) {
+            following.add(userId);
+        }
+    }
+
+    public void unfollow(long userId) {
+        following.remove(userId);
     }
 
     @Override
