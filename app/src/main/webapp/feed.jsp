@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-    <%@ page import="org.example.models.User" %>
-        <%@ page import="java.util.List" %>
-            <%@ page import="org.example.models.Post" %>
+    <%@ page import="java.util.List" %>
+        <%@ page import="org.example.models.Post" %>
+            <%@ page import="org.example.models.User" %>
 
 
                 <!DOCTYPE html>
@@ -14,8 +14,11 @@
 
                 <body>
                     <h1>Bienvenue sur MINIATURE</h1>
-                    <p>Voici votre flux d'actualités personnalisé.</p>
-                    <form method="post">
+
+                    <h2><a href="/feedSubscriptions" class="subscription-link">Page d'abonnements</a></h2>
+
+
+                    <form id="newPostForm" method="post">
                         <input type="text" name="content" placeholder="Quoi de neuf ?">
                         <button name="newPost" type="submit">&#9998; Nouveau post</button>
                     </form>
@@ -26,9 +29,10 @@
                             %>
 
                             <article class="post">
-                                <form method="post" action="follow">
+                                <form class="follow-form" method="post" action="follow">
                                     <input type="hidden" name="userId" value="<%= post.getUserId() %>">
-                                    <button type="submit">
+                                    <button type="submit" class="btn-follow <%= post.isFollowing() ? " following" : ""
+                                        %>">
                                         <%= post.isFollowing() ? "✓ Suivi" : "Suivre" %>
                                     </button>
                                 </form>
@@ -38,8 +42,13 @@
                                     <%= post.getContent() %>
                                 </p>
 
-                                <button name="like">&#129293; Like </button>
-                                <button name="comment">&#128172; Comment</button>
+                                <form class="like-form" method="post" action="like">
+                                    <input type="hidden" name="postId" value="<%= post.getId() %>">
+                                    <button type="submit" class="like <%= post.isLiked() ? " liked" : "" %>">
+                                        <%= post.isLiked() ? "❤️ Liké" : "🤍 J'aime" %>
+                                    </button>
+                                </form>
+                                <button name="comment">&#128172; <a href="comment.jsp?postId=<%= post.getId() %>">Comment</a></button>
                             </article>
 
                             <% } } else { %>

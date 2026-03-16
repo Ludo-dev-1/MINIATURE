@@ -10,6 +10,7 @@ public class Post {
     private LocalDateTime  createdAt;
     private String authorName;
     private boolean following;
+    private boolean liked;
 
     public Post(String content, long userId, long id, LocalDateTime  createdAt, String authorName, boolean following) {
         this.content = content;
@@ -52,8 +53,20 @@ public class Post {
         this.following = following;
     }
 
+    public boolean isLiked() {
+        return liked;
+    }
+
+    public void setLiked(boolean liked) {
+        this.liked = liked;
+    }   
+
     public void toggleFollowing() {
         this.following = !this.following;
+    }
+
+    public void toggleLiked() {
+        this.liked = !this.liked;
     }
 
 }

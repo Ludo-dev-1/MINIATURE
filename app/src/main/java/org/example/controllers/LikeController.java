@@ -10,32 +10,29 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/follow")
-public class FollowController extends HttpServlet {
-
-    @Override
+@WebServlet("/like")
+public class LikeController extends HttpServlet {
+      @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-
-        // on récupère l'utilisateur courant pour lui permettre de suivre ou unfollow un
-        // autre utilisateur
+        
+        // on récupère l'utilisateur courant pour lui permettre de liker ou unliker un post
         User currentUser = (User) req.getSession().getAttribute("currentUser");
 
-        // on vérifie que l'utilisateur est connecté avant de lui permettre de suivre ou
-        // unfollow un autre utilisateur
+        // on verifie que l'utilisateur est connecté avant de lui permettre de liker ou unliker un post
         if (currentUser == null) {
             resp.sendRedirect(req.getContextPath() + "/login");
             return;
         }
 
-        // on récupère l'id de l'utilisateur à suivre ou unfollow
-        long userIdToFollow = Long.parseLong(req.getParameter("userId"));
+        // on récupère l'id du post à liker ou unliker
+        long postIdToLike = Long.parseLong(req.getParameter("postId"));
 
-        // Toggle : unfollow si déjà suivi, follow sinon
-        if (currentUser.getFollowing().contains(userIdToFollow)) {
-            currentUser.unfollow(userIdToFollow);
+        // Toggle : unlike si déjà liké, like sinon
+        if (currentUser.getLiked().contains(postIdToLike)) {
+            currentUser.unlike(postIdToLike);
         } else {
-            currentUser.follow(userIdToFollow);
+            currentUser.like(postIdToLike);
         }
 
         // Mettre à jour la session
@@ -44,4 +41,6 @@ public class FollowController extends HttpServlet {
         // Retourner au feed
         resp.sendRedirect(req.getHeader("referer"));
     }
+
+
 }

@@ -11,6 +11,9 @@
 <body>  
 
 <h1>Bienvenue sur MINIATURE</h1>
+
+<h2><a href="/feed" class="subscription-link">Retourner au feed</a></h2>
+
 <p>Voici les posts des utilisateurs que vous suivez.</p>
 
 <%
@@ -20,9 +23,9 @@ if (posts != null && !posts.isEmpty()) {
     for (Post post : posts) {
 %>
 <article class="post">
-    <form method="post" action="follow">
+    <form class="follow-form" method="post" action="follow">
         <input type="hidden" name="userId" value="<%= post.getUserId() %>">
-        <button type="submit">
+        <button type="submit" class="btn-follow <%= post.isFollowing() ? "following" : "" %>">
             <%= post.isFollowing() ? "✓ Suivi" : "Suivre" %>
         </button>
     </form>

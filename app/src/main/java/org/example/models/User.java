@@ -9,8 +9,7 @@ public class User {
     private String password;
     private String email;
     private List<Long> following = new ArrayList<>();
-
-
+    private List<Long> liked = new ArrayList<>();
 
     public User(String username, String password, String email, long userId) {
         this.username = username;
@@ -55,6 +54,20 @@ public class User {
         return following;
     }
 
+    public List<Long> getLiked() {
+        return liked;
+    }
+
+    public void like(long postId) {
+        if (!liked.contains(postId)) {
+            liked.add(postId);
+        }
+    }
+
+    public void unlike(long postId) {
+        liked.remove(Long.valueOf(postId));
+    }
+
     public void follow(long userId) {
         if (!following.contains(userId)) {
             following.add(userId);
@@ -67,7 +80,7 @@ public class User {
 
     @Override
     public String toString() {
-       
+
         return "User{" +
                 "username='" + username + '\'' +
                 ", email='" + email + '\'' +

@@ -1,79 +1,112 @@
-/* Reset de base */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+/* ===== Variables ===== */
+:root {
+    --auth-width: 340px;
+}
+
+/* ===== Reset de base ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Fond de page */
-body{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#4e73df,#1cc88a);
+/* ===== Fond de page ===== */
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #4e73df, #1cc88a);
 }
 
-/* Conteneur du formulaire */
-form{
-    background:white;
-    padding:40px;
-    border-radius:10px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.2);
-    width:320px;
+/* ===== Titre principal ===== */
+h1 {
+    color: white;
+    font-size: 36px;
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-/* Titre */
-h1{
-    position:absolute;
-    top:20%;
-    text-align:center;
-    color:white;
-    font-size:32px;
+/* ===== Conteneur du formulaire ===== */
+form {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: var(--auth-width);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-/* Labels */
-label{
-    font-weight:bold;
-    font-size:14px;
-    color:#333;
+/* ===== Labels ===== */
+label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
 }
 
-/* Champs input */
+/* ===== Champs input ===== */
 input[type="text"],
-input[type="password"]{
-    width:100%;
-    padding:10px;
-    margin-top:5px;
-    border:1px solid #ccc;
-    border-radius:5px;
-    transition:0.3s;
+input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.3s;
 }
 
-/* Effet focus */
+/* ===== Effet focus sur champs ===== */
 input[type="text"]:focus,
-input[type="password"]:focus{
-    border-color:#4e73df;
-    outline:none;
-    box-shadow:0 0 5px rgba(78,115,223,0.5);
+input[type="password"]:focus {
+    border-color: #4e73df;
+    outline: none;
+    box-shadow: 0 0 6px rgba(78, 115, 223, 0.5);
 }
 
-/* Bouton */
-input[type="submit"]{
-    width:100%;
-    padding:12px;
-    background:#4e73df;
-    border:none;
-    border-radius:5px;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
+/* ===== Action principale commune ===== */
+.auth-action {
+    width: 100%;
+    padding: 12px;
+    background: #4e73df;
+    border: none;
+    border-radius: 6px;
+    display: inline-block;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: center;
+    text-decoration: none;
 }
 
-/* Hover bouton */
-input[type="submit"]:hover{
-    background:#375ac2;
+.auth-action:hover {
+    background: #375ac2;
+}
+
+/* ===== Lien S'inscrire ===== */
+.registerbtn {
+    width: var(--auth-width);
+    margin-top: 15px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 400px) {
+    form {
+        width: 90%;
+        padding: 30px;
+    }
+
+    .registerbtn {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
 }

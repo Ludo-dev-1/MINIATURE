@@ -1,103 +1,244 @@
-/* ===== PAGE HOME ===== */
-
-body{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:flex-start;
-    background:linear-gradient(135deg,#4e73df,#1cc88a);
-    font-family: Arial, Helvetica, sans-serif;
-    padding-top:40px;
+/* ===== Base ===== */
+:root {
+    --primary: #1f5cff;
+    --primary-dark: #1848c4;
+    --accent: #13b97f;
+    --text-dark: #1f2937;
+    --text-soft: #5f6b7a;
+    --card: #ffffff;
+    --radius: 14px;
+    --content-width: 460px;
 }
 
-/* Titre */
-h1{
-    color:white;
-    margin-bottom:10px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body > p{
-    color:white;
-    margin-bottom:25px;
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 14px;
+    padding: 38px 16px 40px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background:
+        radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0) 42%),
+        linear-gradient(135deg, #2557d6 0%, #18b37b 100%);
+}
+
+h1 {
+    color: #ffffff;
+    font-size: 35px;
+    line-height: 1.1;
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    width: var(--content-width);
+    display: flex;
+    justify-content: center;
+}
+
+/* Lien principal vers la page d'abonnements */
+.subscription-link {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    background: #ffffff;
+    color: var(--primary);
+    border: 2px solid rgba(31, 92, 255, 0.22);
+    border-radius: 999px;
+    padding: 12px 18px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    box-shadow: 0 10px 24px rgba(10, 26, 81, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.subscription-link:hover {
+    background: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 14px 28px rgba(13, 38, 120, 0.34);
+    transform: translateY(-1px);
+}
+
+.subscription-link:active {
+    transform: translateY(0);
 }
 
 /* Formulaire nouveau post */
-form{
-    background:white;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
-    width:400px;
-    margin-bottom:30px;
-    display:flex;
-    gap:10px;
+#newPostForm {
+    width: var(--content-width);
+    background: var(--card);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: 0 12px 30px rgba(7, 20, 62, 0.16);
+    display: flex;
+    gap: 10px;
 }
 
-form input[type="text"]{
-    flex:1;
-    padding:10px;
-    border:1px solid #ccc;
-    border-radius:6px;
-    transition:0.3s;
+#newPostForm input[type="text"] {
+    flex: 1;
+    padding: 11px 12px;
+    border: 1px solid #d3d9e5;
+    border-radius: 9px;
+    font-size: 14px;
+    color: var(--text-dark);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-form input[type="text"]:focus{
-    border-color:#4e73df;
-    outline:none;
-    box-shadow:0 0 5px rgba(78,115,223,0.4);
+#newPostForm input[type="text"]:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(31, 92, 255, 0.12);
 }
 
-form button{
-    padding:10px 14px;
-    border:none;
-    background:#4e73df;
-    color:white;
-    border-radius:6px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
+#newPostForm button {
+    border: none;
+    border-radius: 9px;
+    background: var(--primary);
+    color: #ffffff;
+    padding: 10px 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease;
 }
 
-form button:hover{
-    background:#2e59d9;
+#newPostForm button:hover {
+    background: var(--primary-dark);
 }
 
-/* ===== POSTS ===== */
-
-.post{
-    background:white;
-    width:400px;
-    padding:20px;
-    border-radius:12px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.15);
-    margin-bottom:20px;
+/* Post cards */
+.post {
+    width: var(--content-width);
+    background: var(--card);
+    padding: 18px 20px;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 28px rgba(8, 23, 73, 0.14);
+    margin-bottom: 14px;
 }
 
-/* Auteur + date */
-.post small{
-    color:#777;
+.post small {
+    color: var(--text-soft);
 }
 
-/* Texte du post */
-.post p{
-    color:#333;
-    margin:10px 0;
+.post p {
+    color: var(--text-dark);
+    margin: 10px 0;
+    line-height: 1.45;
 }
 
-/* Boutons actions */
-.post button{
-    padding:8px 12px;
-    margin-right:10px;
-    border:none;
-    border-radius:6px;
-    background:#4e73df;
-    color:white;
-    cursor:pointer;
-    font-size:14px;
-    transition:0.3s;
+.follow-form {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
 }
 
-.post button:hover{
-    background:#2e59d9;
+.btn-follow {
+    padding: 6px 14px;
+    border: 2px solid var(--primary);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-follow:hover {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+.btn-follow.following {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #ffffff;
+}
+
+.btn-follow.following:hover {
+    background: #0f9969;
+    border-color: #0f9969;
+}
+
+.like-form {
+    display: inline-block;
+}
+
+.post button {
+    padding: 8px 12px;
+    margin-right: 8px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s ease;
+}
+
+.post button:hover {
+    background: var(--primary-dark);
+}
+
+.like {
+    background: #f4f6fb;
+    color: #556074;
+    border: 1px solid #d8deea;
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.like:hover {
+    background: #ffe7e7;
+    border-color: #ff7575;
+    color: #e53935;
+}
+
+.like.liked {
+    background: #f04e4e;
+    border-color: #f04e4e;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.like.liked:hover {
+    background: #d93a3a;
+    border-color: #d93a3a;
+}
+
+body > p {
+    width: var(--content-width);
+    color: #ffffff;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+@media (max-width: 520px) {
+    :root {
+        --content-width: 94vw;
+    }
+
+    h1 {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    #newPostForm {
+        flex-direction: column;
+    }
+
+    #newPostForm button {
+        width: 100%;
+    }
 }
