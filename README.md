@@ -56,7 +56,7 @@ class Comment {
     +long userId
 }
 
-class FeedService {
+class Feed{
     +List~Post~ getRecommendations()
     +List~Post~ getFollowingFeed(User user)
 }
@@ -73,6 +73,6 @@ Post "1" ..> "0..*" Like : receives
 User "1" ..> "0..*" Follow : follower
 User "1" ..> "0..*" Follow : followed
 
-FeedService --> Post
-FeedService --> User
+Feed --> Post
+Feed --> User
 ```

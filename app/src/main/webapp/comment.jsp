@@ -2,8 +2,6 @@
 <%@ taglib prefix="c" uri="jakarta.servlet.jsp.jstl.core" %>
 
 <%
-    // Récupérer le post et la liste de commentaires depuis les attributs du servlet
-    // Le servlet doit mettre en attribut "post" et "comments" (filtrés par postId)
     Object postObj = request.getAttribute("post");
     Object commentsObj = request.getAttribute("comments");
 %>

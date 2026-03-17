@@ -63,6 +63,7 @@ public class FeedController extends HttpServlet {
             return;
         }
         
+        // on récupère la liste des utilisateurs pour mettre à jour les posts avec les infos de follow et like
         List<User> users = (List<User>) getServletContext().getAttribute("users");
 
         // on met à jour les posts avec les infos de follow et like pour l'utilisateur courant
