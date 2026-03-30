@@ -1,4 +1,4 @@
-package org.example.models;
+package org.example.domain.model;
 
 public class Follow {
     private long followerId;

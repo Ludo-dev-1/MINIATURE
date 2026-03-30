@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <%@ page import="java.util.List" %>
-        <%@ page import="org.example.models.Post" %>
-            <%@ page import="org.example.models.User" %>
+        <%@ page import="org.example.domain.model.Post" %>
+            <%@ page import="org.example.domain.model.User" %>
 
 
                 <!DOCTYPE html>

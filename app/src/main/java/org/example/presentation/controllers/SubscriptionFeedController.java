@@ -1,12 +1,13 @@
-package org.example.controllers;
+package org.example.presentation.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import org.example.models.Post;
-import org.example.models.User;
+import org.example.domain.model.Post;
+import org.example.domain.model.User;
+import org.example.infrastructure.RepositoryAdapter;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -29,8 +30,8 @@ public class SubscriptionFeedController extends HttpServlet {
         }
 
         // On récupére tous les posts et utilisateurs
-        List<Post> posts = (List<Post>) getServletContext().getAttribute("posts");
-        List<User> users = (List<User>) getServletContext().getAttribute("users");
+        List<Post> posts = RepositoryAdapter.getPostRepository(getServletContext()).findAll();
+        List<User> users = RepositoryAdapter.getUserRepository(getServletContext()).findAll();
 
         // On crée une liste pour le feed des abonnements
         List<Post> feedPosts = new ArrayList<>();

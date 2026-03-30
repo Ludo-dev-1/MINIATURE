@@ -1,11 +1,11 @@
-package org.example.controllers;
+package org.example.presentation.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.example.models.Comment;
+import org.example.domain.model.Comment;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -64,7 +64,6 @@ public class CommentController extends HttpServlet {
             throws ServletException, IOException {
 
         String content = req.getParameter("content");
-        String author = req.getParameter("author");
         long postId = Long.parseLong(req.getParameter("postId"));
 
         // Création d'un nouvel ID simple (increment)

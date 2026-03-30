@@ -1,4 +1,4 @@
-package org.example.models;
+package org.example.domain.model;
 
 import java.util.ArrayList;
 import java.util.List;

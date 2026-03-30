@@ -1,12 +1,11 @@
-package org.example.models;
+package org.example.domain.model;
 
-public class Like {
+public class Like  extends Post {
 
-    private long userId;
     private long postId;
 
     public Like(long userId, long postId) {
-        this.userId = userId;
+        super(null, userId, postId, null, null, false);
         this.postId = postId;
     }
 

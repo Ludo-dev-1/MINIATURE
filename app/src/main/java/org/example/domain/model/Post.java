@@ -1,12 +1,12 @@
-package org.example.models;
+package org.example.domain.model;
 
 import java.time.LocalDateTime ;
 
-public class Post {
+public abstract class Post {
 
     private long id;
     private String content;
-    private long userId;
+    protected long userId;
     private LocalDateTime  createdAt;
     private String authorName;
     private boolean following;
@@ -67,6 +67,13 @@ public class Post {
 
     public void toggleLiked() {
         this.liked = !this.liked;
+    }
+
+    public static int size() {
+        // Cette méthode devrait retourner le nombre total de posts, 
+        // mais comme nous n'avons pas de stockage persistant, nous allons simplement retourner 0.
+        // Dans une vraie application, cela devrait interagir avec le repository pour obtenir la taille réelle.
+        return 0;
     }
 
 }
