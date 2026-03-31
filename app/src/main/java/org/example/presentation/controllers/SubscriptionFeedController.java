@@ -15,6 +15,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import static org.example.presentation.controllers.FeedController.verifyUserLoggedIn;
+
 @WebServlet("/feedSubscriptions")
 public class SubscriptionFeedController extends HttpServlet {
 
@@ -24,10 +26,8 @@ public class SubscriptionFeedController extends HttpServlet {
 
         // On Récupére l'utilisateur connecté
         User currentUser = (User) req.getSession().getAttribute("currentUser");
-        if (currentUser == null) {
-            resp.sendRedirect(req.getContextPath() + "/login");
-            return;
-        }
+
+        verifyUserLoggedIn(req, resp);
 
         // On récupére tous les posts et utilisateurs
         List<Post> posts = RepositoryAdapter.getPostRepository(getServletContext()).findAll();

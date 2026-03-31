@@ -10,20 +10,21 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import static org.example.presentation.controllers.FeedController.verifyUserLoggedIn;;
+
 @WebServlet("/like")
 public class LikeController extends HttpServlet {
-      @Override
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        
-        // on récupère l'utilisateur courant pour lui permettre de liker ou unliker un post
+
+        // on récupère l'utilisateur courant pour lui permettre de liker ou unliker un
+        // post
         User currentUser = (User) req.getSession().getAttribute("currentUser");
 
-        // on verifie que l'utilisateur est connecté avant de lui permettre de liker ou unliker un post
-        if (currentUser == null) {
-            resp.sendRedirect(req.getContextPath() + "/login");
-            return;
-        }
+        // on verifie que l'utilisateur est connecté avant de lui permettre de liker ou
+        // unliker un post
+        verifyUserLoggedIn(req, resp);
 
         // on récupère l'id du post à liker ou unliker
         long postIdToLike = Long.parseLong(req.getParameter("postId"));
@@ -41,6 +42,5 @@ public class LikeController extends HttpServlet {
         // Retourner au feed
         resp.sendRedirect(req.getHeader("referer"));
     }
-
 
 }

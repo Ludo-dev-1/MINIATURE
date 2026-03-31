@@ -14,20 +14,18 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "RegisterController", urlPatterns = { "/register" })
 public class RegisterController extends HttpServlet {
-
     private RegisterService registerService;
-
+    
     @Override
+    // on initialise le service de register avec le repository d'utilisateur
     public void init() {
         UserRepository repo = RepositoryAdapter.getUserRepository(getServletContext());
-
         this.registerService = new RegisterService(repo);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-
         req.getRequestDispatcher("/register.jsp").forward(req, resp);
     }
 

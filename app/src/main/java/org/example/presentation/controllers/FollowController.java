@@ -10,6 +10,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import static org.example.presentation.controllers.FeedController.verifyUserLoggedIn;;
+
 @WebServlet("/follow")
 public class FollowController extends HttpServlet {
 
@@ -23,10 +25,7 @@ public class FollowController extends HttpServlet {
 
         // on vérifie que l'utilisateur est connecté avant de lui permettre de suivre ou
         // unfollow un autre utilisateur
-        if (currentUser == null) {
-            resp.sendRedirect(req.getContextPath() + "/login");
-            return;
-        }
+        verifyUserLoggedIn(req, resp);
 
         // on récupère l'id de l'utilisateur à suivre ou unfollow
         long userIdToFollow = Long.parseLong(req.getParameter("userId"));

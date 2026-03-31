@@ -18,7 +18,7 @@
                     <h2><a href="/feedSubscriptions" class="subscription-link">Page d'abonnements</a></h2>
 
 
-                    <form id="newPostForm" method="post">
+                    <form id="newPostForm" method="post" action="/post">
                         <input type="text" name="content" placeholder="Quoi de neuf ?">
                         <button name="newPost" type="submit">&#9998; Nouveau post</button>
                     </form>
