@@ -1,6 +1,6 @@
 package org.example.application.services;
 
-import org.example.domain.model.User;
+import org.example.domain.entity.User;
 import org.example.domain.repositories.UserRepository;
 
 public class RegisterService {

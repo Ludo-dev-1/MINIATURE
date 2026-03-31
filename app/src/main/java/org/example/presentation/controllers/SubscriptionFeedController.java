@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import org.example.domain.model.Post;
-import org.example.domain.model.User;
+import org.example.domain.entity.Post;
+import org.example.domain.entity.User;
 import org.example.infrastructure.RepositoryAdapter;
 
 import jakarta.servlet.ServletException;

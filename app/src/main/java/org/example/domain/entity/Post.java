@@ -1,4 +1,4 @@
-package org.example.domain.model;
+package org.example.domain.entity;
 
 import java.time.LocalDateTime ;
 
@@ -75,5 +75,7 @@ public abstract class Post {
         // Dans une vraie application, cela devrait interagir avec le repository pour obtenir la taille réelle.
         return 0;
     }
+
+    public abstract long getPostId();
 
 }

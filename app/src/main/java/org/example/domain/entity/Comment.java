@@ -1,14 +1,9 @@
-package org.example.domain.model;
+package org.example.domain.entity;
 
 import java.time.LocalDateTime;
 
 public class Comment extends Post {
     private long postId;
-
-    public Comment(long id, long postId, long userId, String content) {
-        super(content, userId, id, LocalDateTime.now(), null, false);
-        this.postId = postId;
-    }
 
     public Comment(String content, long userId, long id, LocalDateTime createdAt, String authorName, boolean following) {
         super(content, userId, id, createdAt, authorName, following);
@@ -37,6 +32,10 @@ public class Comment extends Post {
 
     public String getContent() {
         return super.getContent();
+    }
+
+    public String getAuthorName() {
+        return super.getAuthorName();
     }
 
 }

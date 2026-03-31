@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="org.example.models.Post" %>
+<%@ page import="org.example.domain.entity.Post" %>
 <%@ page import="java.util.List" %>
 
 <!DOCTYPE html>

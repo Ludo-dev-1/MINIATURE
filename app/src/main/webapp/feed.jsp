@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <%@ page import="java.util.List" %>
-        <%@ page import="org.example.domain.model.Post" %>
-            <%@ page import="org.example.domain.model.User" %>
+        <%@ page import="org.example.domain.entity.Post" %>
+            <%@ page import="org.example.domain.entity.User" %>
 
 
                 <!DOCTYPE html>
@@ -48,7 +48,8 @@
                                         <%= post.isLiked() ? "❤️ Liké" : "🤍 J'aime" %>
                                     </button>
                                 </form>
-                                <button name="comment">&#128172; <a href="comment.jsp?postId=<%= post.getId() %>">Comment</a></button>
+                                <a href="<%= request.getContextPath() %>/comments?postId=<%= post.getId() %>">&#128172;
+                                    Commentaire</a>
                             </article>
 
                             <% } } else { %>

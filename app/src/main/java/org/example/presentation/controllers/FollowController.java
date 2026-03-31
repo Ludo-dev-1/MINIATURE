@@ -2,7 +2,7 @@ package org.example.presentation.controllers;
 
 import java.io.IOException;
 
-import org.example.domain.model.User;
+import org.example.domain.entity.User;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

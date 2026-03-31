@@ -1,4 +1,4 @@
-package org.example.domain.model;
+package org.example.domain.entity;
 
 public class Like  extends Post {
 

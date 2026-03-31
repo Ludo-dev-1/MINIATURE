@@ -3,7 +3,7 @@ package org.example.presentation.controllers;
 import java.io.IOException;
 
 import org.example.application.services.Authservice;
-import org.example.domain.model.User;
+import org.example.domain.entity.User;
 import org.example.domain.repositories.UserRepository;
 import org.example.infrastructure.RepositoryAdapter;
 
@@ -45,7 +45,7 @@ public class LoginController extends HttpServlet {
             req.getSession().setAttribute("currentUser", user);
             resp.sendRedirect(req.getContextPath() + "/feed");
         } else {
-            resp.sendRedirect(req.getContextPath() + "/login?error=1");
+            resp.sendRedirect(req.getContextPath() + "/register");
         }
     }
 }
