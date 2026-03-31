@@ -9,14 +9,14 @@
 
                 <head>
                     <title>Home - MINIATURE</title>
-                    <link rel="stylesheet" type="text/css" href="./style/feed.css">
+                    <link rel="stylesheet" type="text/css" href="./style/feed.css?v=2">
                 </head>
 
                 <body>
                     <h1>Bienvenue sur MINIATURE</h1>
 
                     <h2><a href="/feedSubscriptions" class="subscription-link">Page d'abonnements</a></h2>
-
+                    <a href="<%= request.getContextPath() %>/logout" class="logout-link">Se déconnecter</a>
 
                     <form id="newPostForm" method="post" action="/post">
                         <input type="text" name="content" placeholder="Quoi de neuf ?">

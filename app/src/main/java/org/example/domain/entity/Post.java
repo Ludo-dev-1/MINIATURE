@@ -70,10 +70,9 @@ public abstract class Post {
     }
 
     public static int size() {
-        // Cette méthode devrait retourner le nombre total de posts, 
-        // mais comme nous n'avons pas de stockage persistant, nous allons simplement retourner 0.
-        // Dans une vraie application, cela devrait interagir avec le repository pour obtenir la taille réelle.
-        return 0;
+        // Cette méthode est un placeholder et doit être implémentée pour retourner le nombre total de posts
+        // Cela pourrait impliquer d'accéder à une base de données ou à un repository pour compter les posts existants
+        return 0; // Retourne 0 pour l'instant, à remplacer par la logique réelle de comptage des posts
     }
 
     public abstract long getPostId();

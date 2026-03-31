@@ -46,7 +46,12 @@ public class PostController extends HttpServlet {
 
         // on verifie que le contenu n'est pas vide avant de créer le post
         if (content != null && !content.trim().isEmpty()) {
-            Post newPost = new Comment(content, userId, Post.size() + 1, LocalDateTime.now(), currentUser.getUsername(),
+            long nextPostId = postRepository.findAll().stream()
+                .mapToLong(Post::getId)
+                .max()
+                .orElse(0L) + 1L;
+
+            Post newPost = new Comment(content, userId, nextPostId, LocalDateTime.now(), currentUser.getUsername(),
                     false);
             postRepository.save(newPost);
         }

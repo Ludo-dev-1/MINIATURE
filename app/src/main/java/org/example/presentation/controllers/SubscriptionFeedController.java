@@ -52,6 +52,7 @@ public class SubscriptionFeedController extends HttpServlet {
 
                 // Indiquer si on suit l'auteur (utile pour le bouton follow)
                 post.setFollowing(currentUser.getFollowing().contains(post.getUserId()));
+                post.setLiked(currentUser.getLiked().contains(post.getId()));
 
                 feedPosts.add(post);
             }

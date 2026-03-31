@@ -71,6 +71,37 @@ h2 {
     transform: translateY(0);
 }
 
+/* Lien de déconnexion */
+a.logout-link {
+    width: var(--content-width);
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.92);
+    color: #b42318;
+    border: 2px solid rgba(180, 35, 24, 0.25);
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    box-shadow: 0 8px 20px rgba(10, 26, 81, 0.16);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+a.logout-link:hover {
+    background: #b42318;
+    color: #ffffff;
+    border-color: #b42318;
+    box-shadow: 0 14px 28px rgba(112, 28, 23, 0.34);
+    transform: translateY(-1px);
+}
+
+a.logout-link:active {
+    transform: translateY(0);
+}
+
 /* Formulaire nouveau post */
 #newPostForm {
     width: var(--content-width);
@@ -236,6 +267,10 @@ body > p {
 
     #newPostForm {
         flex-direction: column;
+    }
+
+    a.logout-link {
+        width: 100%;
     }
 
     #newPostForm button {

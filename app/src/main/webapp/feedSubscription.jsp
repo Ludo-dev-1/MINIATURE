@@ -12,7 +12,7 @@
 
 <h1>Bienvenue sur MINIATURE</h1>
 
-<h2><a href="/feed" class="subscription-link">Retourner au feed</a></h2>
+<h2><a href="<%= request.getContextPath() %>/feed" class="subscription-link">Retourner au feed</a></h2>
 
 <p>Voici les posts des utilisateurs que vous suivez.</p>
 
@@ -33,8 +33,13 @@ if (posts != null && !posts.isEmpty()) {
     <p><small>Posté par <%= post.getAuthorName() %> le <%= post.getCreatedAt().toLocalDate() %></small></p>
     <p><%= post.getContent() %></p>
 
-    <button name="like">&#129293; Like </button>
-    <button name="comment">&#128172; Comment</button>
+    <form class="like-form" method="post" action="like">
+        <input type="hidden" name="postId" value="<%= post.getId() %>">
+        <button type="submit" class="like <%= post.isLiked() ? "liked" : "" %>">
+            <%= post.isLiked() ? "❤️ Liké" : "🤍 J'aime" %>
+        </button>
+    </form>
+    <a href="<%= request.getContextPath() %>/comments?postId=<%= post.getId() %>">&#128172; Commentaire</a>
 </article>
 <%
     }

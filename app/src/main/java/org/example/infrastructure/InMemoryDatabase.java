@@ -91,3 +91,11 @@ public class InMemoryDatabase implements Database {
         storage.clear();
     }
 }
+
+// Note : les données sont initialisées dans les repositories pour éviter les dépendances circulaires entre les repositories et la base de données.
+// Par exemple, le InMemoryPostRepository initialise des posts avec des userId qui font référence à des utilisateurs dans le InMemoryUserRepository.
+// Cela permet de garder une séparation claire entre la logique de stockage (InMemoryDatabase) et la logique métier (repositories) tout en assurant que les données de test sont cohérentes.
+// Si on initialisait les données directement dans la base de données, cela créerait une dépendance directe entre la base de données et les entités spécifiques (User, Post, etc.), ce qui rendrait le code plus rigide et moins modulaire.
+// En résumé, la base de données est un simple conteneur de données, tandis que les repositories sont responsables de la logique d'initialisation et de gestion des données spécifiques à chaque type d'entité.
+
+
