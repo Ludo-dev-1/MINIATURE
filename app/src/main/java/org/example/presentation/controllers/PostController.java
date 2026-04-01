@@ -18,6 +18,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import static org.example.presentation.controllers.FeedController.verifyUserLoggedIn;
+import static org.example.presentation.controllers.FeedController.recupUserInSession;
+
 
 @WebServlet("/post")
 public class PostController extends HttpServlet {
@@ -36,10 +38,15 @@ public class PostController extends HttpServlet {
     // POST pour créer un nouveau post
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // on verifie que l'utilisateur est connecté avant de lui permettre de poster
-        verifyUserLoggedIn(req, resp);
+         if (!verifyUserLoggedIn(req, resp)) {
+            return;
+        }
+
+        // on récupère l'utilisateur courant pour lui permettre de créer un post
+        User currentUser = recupUserInSession(req);
+
         // Récupère le contenu du post et l'utilisateur courant
         String content = req.getParameter("content");
-        User currentUser = (User) req.getSession().getAttribute("currentUser");
 
         // on récupère l'id de l'utilisateur pour associer le post à son auteur
         long userId = currentUser.getUserId();

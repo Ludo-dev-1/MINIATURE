@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import static org.example.presentation.controllers.FeedController.verifyUserLoggedIn;
+import static org.example.presentation.controllers.FeedController.recupUserInSession;
 
 @WebServlet("/feedSubscriptions")
 public class SubscriptionFeedController extends HttpServlet {
@@ -24,12 +25,15 @@ public class SubscriptionFeedController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
+        // on verifie que l'utilisateur est connecté avant de lui permettre d'accéder au feed des abonnements
+        if (!verifyUserLoggedIn(req, resp)) {
+            return;
+        }
+
         // On Récupére l'utilisateur connecté
-        User currentUser = (User) req.getSession().getAttribute("currentUser");
+        User currentUser = recupUserInSession(req);
 
-        verifyUserLoggedIn(req, resp);
-
-        // On récupére tous les posts et utilisateurs
+        // On récupère tous les posts et utilisateurs
         List<Post> posts = RepositoryAdapter.getPostRepository(getServletContext()).findAll();
         List<User> users = RepositoryAdapter.getUserRepository(getServletContext()).findAll();
 
@@ -38,10 +42,8 @@ public class SubscriptionFeedController extends HttpServlet {
 
         // On Filtre les posts
         for (Post post : posts) {
-
             // on ne garde que les posts des abonnements
             if (currentUser.getFollowing().contains(post.getUserId())) {
-
                 // Ajouter le nom de l'auteur
                 for (User user : users) {
                     if (user.getUserId() == post.getUserId()) {
@@ -67,5 +69,10 @@ public class SubscriptionFeedController extends HttpServlet {
     }
 }
 
-// Ce servlet SubscriptionFeedController gère l'affichage du feed des abonnements dans l'application. Il vérifie d'abord que l'utilisateur est connecté avant de lui permettre d'accéder au feed des abonnements. Ensuite, il récupère tous les posts et utilisateurs depuis les repositories, filtre les posts pour ne garder que ceux des utilisateurs auxquels l'utilisateur connecté est abonné, enrichit les posts avec le nom de l'auteur et les informations de suivi et de like, trie les posts par date de création, et les passe en attribut à la page JSP pour affichage.    
-// En résumé, ce servlet est un composant clé pour gérer l'affichage du feed des abonnements dans l'application, en fournissant des fonctionnalités pour récupérer et filtrer les posts en fonction des abonnements de l'utilisateur connecté, et en les affichant de manière structurée sur la page du feed des abonnements.               
+// Ce servlet SubscriptionFeedController gère l'affichage du feed des abonnements dans l'application. Il vérifie d'abord que l'utilisateur est
+// connecté avant de lui permettre d'accéder au feed des abonnements. Ensuite, il récupère tous les posts et utilisateurs depuis les repositories, filtre
+// les posts pour ne garder que ceux des utilisateurs auxquels l'utilisateur connecté est abonné, enrichit les posts avec le nom de l'auteur et les
+// informations de suivi et de like, trie les posts par date de création, et les passe en attribut à la page JSP pour affichage.
+// En résumé, ce servlet est un composant clé pour gérer l'affichage du feed des abonnements dans l'application, en fournissant des fonctionnalités pour
+// récupérer et filtrer les posts en fonction des abonnements de l'utilisateur connecté, et en les affichant de manière structurée sur la page du feed des
+// abonnements.

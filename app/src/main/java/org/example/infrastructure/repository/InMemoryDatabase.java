@@ -25,7 +25,6 @@ public class InMemoryDatabase implements Database {
     public static InMemoryDatabase getInstance() {
         return INSTANCE;
     }
-
      
     // Analogies Postgres : add = INSERT INTO
     @Override

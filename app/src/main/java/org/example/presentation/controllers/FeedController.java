@@ -23,12 +23,17 @@ public class FeedController extends HttpServlet {
     private PostRepository postRepository;
     private UserRepository userRepository;
 
-    public static void verifyUserLoggedIn(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    public static boolean verifyUserLoggedIn(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         User currentUser = (User) req.getSession().getAttribute("currentUser");
         if (currentUser == null) {
             resp.sendRedirect(req.getContextPath() + "/login");
+            return false;
         }
-        return;
+        return true;
+    }
+
+    public static User recupUserInSession(HttpServletRequest req) {
+        return (User) req.getSession().getAttribute("currentUser");
     }
 
     @Override
@@ -43,16 +48,22 @@ public class FeedController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        // on verifie que l'utilisateur est connecté avant de lui permettre d'accéder au
-        // feed
-        verifyUserLoggedIn(req, resp);
-        List<Post> posts = postRepository.findAll(); // récupère depuis le repository
+        // on verifie que l'utilisateur est connecté avant de lui permettre d'accéder aufeed
+        if (!verifyUserLoggedIn(req, resp)) {
+            return;
+        }
         // Récupère l'utilisateur courant depuis la session
-        User currentUser = (User) req.getSession().getAttribute("currentUser");
-        // on récupère la liste des utilisateurs pour mettre à jour les posts avec les infos de follow et like
+        User currentUser = recupUserInSession(req);
+
+        // récupère depuis le repository
+        List<Post> posts = postRepository.findAll();
+
+        // on récupère la liste des utilisateurs pour mettre à jour les posts avec les
+        // infos de follow et like
         List<User> users = userRepository.findAll();
 
-        // on met à jour les posts avec les infos de follow et like pour l'utilisateur courant
+        // on met à jour les posts avec les infos de follow et like pour l'utilisateur
+        // courant
         for (Post post : posts) {
             // Mets à jour l'auteur
             for (User user : users) {
@@ -87,5 +98,9 @@ public class FeedController extends HttpServlet {
     }
 
 }
-//  Ce servlet FeedController gère l'affichage du feed de l'application. Il vérifie d'abord que l'utilisateur est connecté avant de lui permettre d'accéder au feed. Ensuite, il récupère tous les posts depuis le repository et met à jour chaque post avec les informations sur l'auteur, si l'utilisateur suit l'auteur, et si l'utilisateur a aimé le post. Les posts sont ensuite triés par date de création, du plus récent au plus ancien, et passés en attribut à la page JSP pour affichage.
-// En résumé, ce servlet est un composant clé pour gérer l'affichage du feed dans  l'application, en fournissant des fonctionnalités pour récupérer et enrichir les posts avec des informations pertinentes pour l'utilisateur connecté, et en les affichant de manière structurée sur la page du feed.     
+// Ce servlet FeedController gère l'affichage du feed de l'application. Il vérifie d'abord que l'utilisateur est connecté avant de lui permettre
+// d'accéder au feed. Ensuite, il récupère tous les posts depuis le repository et met à jour chaque post avec les informations sur l'auteur, si
+// l'utilisateur suit l'auteur, et si l'utilisateur a aimé le post. Les posts sont ensuite triés par date de création, du plus récent au plus ancien, et
+// passés en attribut à la page JSP pour affichage.
+// En résumé, ce servlet est un composant clé pour gérer l'affichage du feed dans l'application, en fournissant des fonctionnalités pour récupérer et
+// enrichir les posts avec des informations pertinentes pour l'utilisateur connecté, et en les affichant de manière structurée sur la page du feed.

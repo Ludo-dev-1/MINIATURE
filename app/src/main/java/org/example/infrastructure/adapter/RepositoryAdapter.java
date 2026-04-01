@@ -2,10 +2,13 @@ package org.example.infrastructure.adapter;
 
 import java.util.List;
 
+import org.example.domain.entity.Comment;
 import org.example.domain.entity.Post;
 import org.example.domain.entity.User;
+import org.example.domain.repositories.CommentRepository;
 import org.example.domain.repositories.PostRepository;
 import org.example.domain.repositories.UserRepository;
+import org.example.infrastructure.repository.InMemoryCommentRepository;
 import org.example.infrastructure.repository.InMemoryPostRepository;
 import org.example.infrastructure.repository.InMemoryUserRepository;
 
@@ -16,6 +19,7 @@ public final class RepositoryAdapter {
 
     public static final String USER_REPOSITORY_ATTRIBUTE = "userRepo";
     public static final String POST_REPOSITORY_ATTRIBUTE = "postRepo";
+    public static final String COMMENT_REPOSITORY_ATTRIBUTE = "commentRepo";
 
     
     private RepositoryAdapter() {
@@ -43,6 +47,17 @@ public final class RepositoryAdapter {
         return repository;
     }
 
+    // Méthode pour obtenir le CommentRepository depuis le contexte de la servlet
+    public static CommentRepository getCommentRepository(ServletContext context) {
+        CommentRepository repository = (CommentRepository) context.getAttribute(COMMENT_REPOSITORY_ATTRIBUTE);
+        if (repository == null) {
+            repository = new InMemoryCommentRepository();
+            context.setAttribute(COMMENT_REPOSITORY_ATTRIBUTE, repository);
+        }
+        syncCommentsAttribute(context, repository);
+        return repository;
+    }
+
     // Méthodes pour synchroniser les attributs du contexte avec les données des repositories
     private static void syncUsersAttribute(ServletContext context, UserRepository repository) {
         List<User> users = repository.findAll();
@@ -53,6 +68,12 @@ public final class RepositoryAdapter {
     private static void syncPostsAttribute(ServletContext context, PostRepository repository) {
         List<Post> posts = repository.findAll();
         context.setAttribute("posts", posts);
+    }
+
+    // Méthode pour synchroniser les commentaires dans le contexte
+    private static void syncCommentsAttribute(ServletContext context, CommentRepository repository) {
+        List<Comment> comments = repository.findAll();
+        context.setAttribute("comments", comments);
     }
 }
 // Cette classe RepositoryAdapter est un composant clé pour gérer les repositories dans l'application. Elle fournit des méthodes statiques pour obtenir les instances de UserRepository et PostRepository à partir du contexte de la servlet, en utilisant des attributs pour stocker les instances. Si une instance n'existe pas encore, elle est créée et stockée dans le contexte. De plus, cette classe synchronise les données des repositories avec les attributs du contexte pour assurer que les données sont accessibles à travers le contexte de la servlet.

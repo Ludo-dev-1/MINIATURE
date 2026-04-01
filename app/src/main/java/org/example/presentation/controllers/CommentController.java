@@ -2,13 +2,12 @@ package org.example.presentation.controllers;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.example.domain.entity.Comment;
 import org.example.domain.entity.Post;
 import org.example.domain.entity.User;
+import org.example.domain.repositories.CommentRepository;
 import org.example.domain.repositories.PostRepository;
 import org.example.infrastructure.adapter.RepositoryAdapter;
 
@@ -18,29 +17,19 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import static org.example.presentation.controllers.FeedController.verifyUserLoggedIn;
+import static org.example.presentation.controllers.FeedController.recupUserInSession;
+
 @WebServlet("/comments")
 public class CommentController extends HttpServlet {
 
-    private List<Comment> comments = new ArrayList<>();
     private PostRepository postRepository;
+    private CommentRepository commentRepository;
 
     @Override
     public void init() throws ServletException {
         postRepository = RepositoryAdapter.getPostRepository(getServletContext());
-
-        @SuppressWarnings("unchecked")
-        List<Comment> existingComments = (List<Comment>) getServletContext().getAttribute("comments");
-        if (existingComments != null) {
-            comments = existingComments;
-            return;
-        }
-
-        // Initialisation avec quelques commentaires de test
-        comments.add(new Comment("Super post !", 1, 1, LocalDateTime.now().minusDays(2), "Alice", false));
-        comments.add(new Comment("Je suis d'accord !", 2, 1, LocalDateTime.now().minusDays(1), "Bob", false));
-        comments.add(new Comment("Merci pour le partage.", 3, 2, LocalDateTime.now().minusHours(12), "Charlie", false));
-        // On stocke dans le contexte pour un accès global si besoin
-        getServletContext().setAttribute("comments", comments);
+        commentRepository = RepositoryAdapter.getCommentRepository(getServletContext());
     }
 
     @Override
@@ -63,18 +52,16 @@ public class CommentController extends HttpServlet {
 
         // Récupérer le post depuis le même repository que le feed
         Post post = postRepository.findAll().stream()
-            .filter(p -> p.getId() == postId)
-            .findFirst()
-            .orElse(null);
+                .filter(p -> p.getId() == postId)
+                .findFirst()
+                .orElse(null);
         if (post == null) {
             resp.sendRedirect(req.getContextPath() + "/feed");
             return;
         }
 
-        // Filtrer les commentaires pour ce post
-        List<Comment> postComments = comments.stream()
-                .filter(c -> c.getPostId() == postId)
-                .collect(Collectors.toList());
+        // Récupérer les commentaires pour ce post depuis le repository
+        List<Comment> postComments = commentRepository.findByPostId(postId);
 
         req.setAttribute("post", post);
         req.setAttribute("comments", postComments);
@@ -87,42 +74,33 @@ public class CommentController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        // Récupère le contenu du commentaire et l'utilisateur courant
-        String content = req.getParameter("content");
-        long postId = Long.parseLong(req.getParameter("postId"));
-        User currentUser = (User) req.getSession().getAttribute("currentUser");
-
-        // Vérifie que l'utilisateur est connecté
-        if (currentUser == null) {
-            resp.sendRedirect(req.getContextPath() + "/login");
+        // on verifie que l'utilisateur est connecté avant de lui permettre de commenter
+        if (!verifyUserLoggedIn(req, resp)) {
             return;
         }
 
-        // Création d'un nouvel ID pour le commentaire
-        long newId = comments.size() + 1;
+        // on récupère l'utilisateur courant pour lui permettre de créer un commentaire
+        User currentUser = recupUserInSession(req);
+
+        // Récupère le contenu du commentaire et le postId
+        String content = req.getParameter("content");
+        long postId = Long.parseLong(req.getParameter("postId"));
 
         // Crée le commentaire avec le nom de l'auteur
         Comment newComment = new Comment(
                 content,
                 currentUser.getUserId(),
-                newId,
-            LocalDateTime.now(),
+                0, // L'ID sera assigné par le repository
+                LocalDateTime.now(),
                 currentUser.getUsername(),
                 false);
         newComment.setPostId(postId);
 
-        // Ajoute le commentaire à la liste
-        comments.add(newComment);
+        // Sauvegarde le commentaire via le repository
+        commentRepository.save(newComment);
 
-        // Mettre à jour le contexte si besoin
-        getServletContext().setAttribute("comments", comments);
-
-        // Redirection vers la page de détail du post (CommentController gère postId)
+        // Redirection vers la page de détail du post
         resp.sendRedirect(req.getContextPath() + "/comments?postId=" + postId);
     }
 
 }
-
-// Ce servlet CommentController gère les opérations liées aux commentaires dans l'application. Il permet d'afficher les commentaires associés à un post spécifique et de permettre aux utilisateurs connectés d'ajouter de nouveaux commentaires. Les commentaires sont stockés dans une liste en mémoire, et le servlet utilise le contexte de la servlet pour partager cette liste à travers différentes requêtes.
-// La méthode doGet récupère les commentaires pour un post donné et les affiche sur une page de détail du post, tandis que la méthode doPost permet aux utilisateurs de soumettre de nouveaux commentaires, qui sont ensuite ajoutés à la liste et affichés sur la même page.
-// En résumé, ce servlet est un composant clé pour gérer les interactions des utilisateurs avec les commentaires dans l'application, en fournissant des fonctionnalités pour afficher et ajouter des commentaires de manière structurée.    
