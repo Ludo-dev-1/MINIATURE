@@ -1,4 +1,4 @@
-package org.example.infrastructure;
+package org.example.infrastructure.adapter;
 
 import java.util.List;
 
@@ -6,6 +6,8 @@ import org.example.domain.entity.Post;
 import org.example.domain.entity.User;
 import org.example.domain.repositories.PostRepository;
 import org.example.domain.repositories.UserRepository;
+import org.example.infrastructure.repository.InMemoryPostRepository;
+import org.example.infrastructure.repository.InMemoryUserRepository;
 
 import jakarta.servlet.ServletContext;
 

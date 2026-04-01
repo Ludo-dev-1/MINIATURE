@@ -2,7 +2,7 @@ package org.example.domain.entity;
 
 import java.time.LocalDateTime ;
 
-import org.example.infrastructure.InMemoryDatabase;
+import org.example.infrastructure.repository.InMemoryDatabase;
 
 public abstract class Post {
 

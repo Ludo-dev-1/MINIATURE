@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.example.domain.entity.Post;
 import org.example.domain.entity.User;
-import org.example.infrastructure.RepositoryAdapter;
+import org.example.infrastructure.adapter.RepositoryAdapter;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

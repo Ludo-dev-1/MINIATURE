@@ -10,7 +10,7 @@ import org.example.domain.entity.Comment;
 import org.example.domain.entity.Post;
 import org.example.domain.entity.User;
 import org.example.domain.repositories.PostRepository;
-import org.example.infrastructure.RepositoryAdapter;
+import org.example.infrastructure.adapter.RepositoryAdapter;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

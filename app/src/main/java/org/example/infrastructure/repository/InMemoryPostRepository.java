@@ -1,4 +1,4 @@
-package org.example.infrastructure;
+package org.example.infrastructure.repository;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

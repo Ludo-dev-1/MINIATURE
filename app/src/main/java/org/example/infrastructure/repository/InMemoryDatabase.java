@@ -1,4 +1,4 @@
-package org.example.infrastructure;
+package org.example.infrastructure.repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;

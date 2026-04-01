@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.example.application.services.RegisterService;
 import org.example.domain.repositories.UserRepository;
-import org.example.infrastructure.RepositoryAdapter;
+import org.example.infrastructure.adapter.RepositoryAdapter;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
