@@ -1,14 +1,10 @@
 package org.example.presentation.controllers;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.List;
 
-import org.example.domain.entity.Comment;
-import org.example.domain.entity.Post;
+import org.example.application.usecase.CreatePostUseCase;
 import org.example.domain.entity.User;
 import org.example.domain.repositories.PostRepository;
-import org.example.domain.repositories.UserRepository;
 import org.example.infrastructure.adapter.RepositoryAdapter;
 
 import jakarta.servlet.ServletException;
@@ -24,15 +20,12 @@ import static org.example.presentation.controllers.FeedController.recupUserInSes
 @WebServlet("/post")
 public class PostController extends HttpServlet {
 
-    private List<User> users;
-    private PostRepository postRepository;
-    private UserRepository userRepository;
+    private CreatePostUseCase createPostUseCase;
 
     @Override
     public void init() {
-        postRepository = RepositoryAdapter.getPostRepository(getServletContext());
-        userRepository = RepositoryAdapter.getUserRepository(getServletContext());
-        users = userRepository.findAll();
+        PostRepository postRepository = RepositoryAdapter.getPostRepository(getServletContext());
+        createPostUseCase = new CreatePostUseCase(postRepository);
     }
 
     // POST pour créer un nouveau post
@@ -48,20 +41,7 @@ public class PostController extends HttpServlet {
         // Récupère le contenu du post et l'utilisateur courant
         String content = req.getParameter("content");
 
-        // on récupère l'id de l'utilisateur pour associer le post à son auteur
-        long userId = currentUser.getUserId();
-
-        // on verifie que le contenu n'est pas vide avant de créer le post
-        if (content != null && !content.trim().isEmpty()) {
-            long nextPostId = postRepository.findAll().stream()
-                .mapToLong(Post::getId)
-                .max()
-                .orElse(0L) + 1L;
-
-            Post newPost = new Comment(content, userId, nextPostId, LocalDateTime.now(), currentUser.getUsername(),
-                    false);
-            postRepository.save(newPost);
-        }
+        createPostUseCase.execute(content, currentUser);
         // redirige vers le feed pour éviter les resoumissions de formulaire
         resp.sendRedirect(req.getContextPath() + "/feed");
         return;

@@ -1,10 +1,9 @@
 package org.example.presentation.controllers;
 
 import java.io.IOException;
-
-import java.util.Comparator;
 import java.util.List;
 
+import org.example.application.usecase.GetFeedUseCase;
 import org.example.domain.entity.Post;
 import org.example.domain.entity.User;
 import org.example.domain.repositories.PostRepository;
@@ -19,9 +18,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/feed")
 public class FeedController extends HttpServlet {
-    private List<User> users;
-    private PostRepository postRepository;
-    private UserRepository userRepository;
+    private GetFeedUseCase getFeedUseCase;
 
     public static boolean verifyUserLoggedIn(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         User currentUser = (User) req.getSession().getAttribute("currentUser");
@@ -38,9 +35,9 @@ public class FeedController extends HttpServlet {
 
     @Override
     public void init() {
-        userRepository = RepositoryAdapter.getUserRepository(getServletContext());
-        postRepository = RepositoryAdapter.getPostRepository(getServletContext());
-        users = userRepository.findAll();
+        UserRepository userRepository = RepositoryAdapter.getUserRepository(getServletContext());
+        PostRepository postRepository = RepositoryAdapter.getPostRepository(getServletContext());
+        getFeedUseCase = new GetFeedUseCase(postRepository, userRepository);
     }
 
     @Override
@@ -55,40 +52,7 @@ public class FeedController extends HttpServlet {
         // Récupère l'utilisateur courant depuis la session
         User currentUser = recupUserInSession(req);
 
-        // récupère depuis le repository
-        List<Post> posts = postRepository.findAll();
-
-        // on récupère la liste des utilisateurs pour mettre à jour les posts avec les
-        // infos de follow et like
-        List<User> users = userRepository.findAll();
-
-        // on met à jour les posts avec les infos de follow et like pour l'utilisateur
-        // courant
-        for (Post post : posts) {
-            // Mets à jour l'auteur
-            for (User user : users) {
-                if (user.getUserId() == post.getUserId()) {
-                    post.setAuthorName(user.getUsername());
-                }
-            }
-            // Mets à jour follow et liked
-            if (currentUser != null) {
-                // Un utilisateur suit un autre utilisateur si son id est dans la liste des
-                // following de l'utilisateur courant
-                post.setFollowing(currentUser.getFollowing().contains(post.getUserId()));
-                // Un utilisateur aime un post si son id est dans la liste des liked de
-                // l'utilisateur courant
-                post.setLiked(currentUser.getLiked().contains(post.getId()));
-            } else {
-                // Si l'utilisateur n'est pas connecté, on considère qu'il ne suit personne et
-                // qu'il n'aime aucun post
-                post.setLiked(false);
-                post.setFollowing(false);
-            }
-        }
-
-        // on trie les posts du plus récent au plus ancien
-        posts.sort(Comparator.comparing(Post::getCreatedAt).reversed());
+        List<Post> posts = getFeedUseCase.execute(currentUser);
 
         // on ajoute les posts en attribut pour les afficher dans le JSP
         req.setAttribute("posts", posts);

@@ -2,8 +2,6 @@ package org.example.domain.entity;
 
 import java.time.LocalDateTime ;
 
-import org.example.infrastructure.repository.InMemoryDatabase;
-
 public abstract class Post {
 
     private long id;
@@ -73,10 +71,6 @@ public abstract class Post {
 
     public void toggleLiked() {
         this.liked = !this.liked;
-    }
-
-    public static int size() {
-        return InMemoryDatabase.getInstance().size(Post.class);
     }
 
     public abstract long getPostId();
