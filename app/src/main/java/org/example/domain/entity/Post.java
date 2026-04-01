@@ -78,3 +78,6 @@ public abstract class Post {
     public abstract long getPostId();
 
 }
+// Cette classe Post est une classe abstraite qui représente un post dans l'application. Elle contient des propriétés communes à tous les types de posts, telles que le contenu, l'identifiant de l'utilisateur, la date de création, le nom de l'auteur, et des indicateurs pour savoir si l'utilisateur suit l'auteur ou a aimé le post.
+// La classe Post fournit également des méthodes pour accéder et modifier ces propriétés, ainsi que des méthodes pour basculer les états de suivi et de like. La méthode size() est un placeholder qui doit être implémenté pour retourner le nombre total de posts, ce qui pourrait impliquer d'accéder à une base de données ou à un repository pour compter les posts existants.
+// En résumé, la classe Post est un composant clé pour représenter les posts dans l'application, en fournissant une structure de base pour les différents types de posts (comme les commentaires et les likes) et en encapsulant les propriétés et comportements communs à tous les posts.  

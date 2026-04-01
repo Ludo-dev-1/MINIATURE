@@ -40,3 +40,5 @@ public class InMemoryUserRepository implements UserRepository {
         database.add(User.class, user);
     }
 }
+// Cette classe InMemoryUserRepository est une implémentation de l'interface UserRepository qui utilise une base de données en mémoire pour stocker les utilisateurs. Elle initialise la base de données avec quelques utilisateurs de test et fournit des méthodes pour trouver tous les utilisateurs, trouver un utilisateur par son nom d'utilisateur, et enregistrer un utilisateur.
+// En résumé, cette classe InMemoryUserRepository est un composant clé pour gérer les utilisateurs dans l'application, en fournissant une implémentation concrète de UserRepository qui utilise une base de données en mémoire pour stocker et récupérer les utilisateurs.  

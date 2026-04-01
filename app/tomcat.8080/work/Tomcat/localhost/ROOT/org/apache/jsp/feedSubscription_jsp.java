@@ -222,3 +222,8 @@ if (posts != null && !posts.isEmpty()) {
     }
   }
 }
+
+// Ce code est la classe Java générée automatiquement par le moteur de JSP de Tomcat à partir du fichier JSP "feedSubscription.jsp".      
+// Cette classe étend HttpJspBase et implémente les interfaces nécessaires pour gérer les dépendances, les imports et les directives de la page JSP.
+// La méthode _jspService est la méthode principale qui traite les requêtes HTTP GET et POST pour la page "feedSubscription.jsp". Elle récupère la liste des posts des abonnements à partir des attributs de la requête, et génère le contenu HTML pour afficher le fil d'actualité des abonnements de l'utilisateur dans l'application MINIATURE, en incluant des fonctionnalités pour suivre les auteurs des posts, liker les posts, et accéder aux commentaires associés à chaque post. Le fichier inclut également un lien pour retourner au feed principal.        
+// En résumé, cette classe est un composant clé pour gérer les interactions avec la page "feedSubscription.jsp", en fournissant la logique nécessaire pour afficher le fil d'actualité des abonnements, d'interagir avec les posts, et de naviguer entre le feed principal et le feed des abonnements dans l'application MINIATURE. 

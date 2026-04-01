@@ -39,3 +39,7 @@ public class Comment extends Post {
     }
 
 }
+// Cette classe Comment étend la classe Post pour représenter un commentaire dans l'application. Elle ajoute un champ postId pour associer le commentaire à un post spécifique. Les méthodes de la classe Comment permettent d'accéder aux propriétés héritées de Post, ainsi qu'à la nouvelle propriété postId.
+// Cette classe peut être utilisée pour gérer les commentaires associés aux posts dans l'application, en permettant de créer, récupérer et manipuler les commentaires de manière structurée. Par exemple, vous pouvez utiliser cette classe pour afficher les commentaires d'un post ou pour ajouter de nouveaux commentaires à un post existant.       
+// En résumé, la classe Comment est un composant clé pour gérer les commentaires dans l'application, en fournissant une structure pour représenter les commentaires et leurs associations avec les posts.   
+

@@ -66,3 +66,6 @@ public class SubscriptionFeedController extends HttpServlet {
         req.getRequestDispatcher("/feedSubscription.jsp").forward(req, resp);
     }
 }
+
+// Ce servlet SubscriptionFeedController gère l'affichage du feed des abonnements dans l'application. Il vérifie d'abord que l'utilisateur est connecté avant de lui permettre d'accéder au feed des abonnements. Ensuite, il récupère tous les posts et utilisateurs depuis les repositories, filtre les posts pour ne garder que ceux des utilisateurs auxquels l'utilisateur connecté est abonné, enrichit les posts avec le nom de l'auteur et les informations de suivi et de like, trie les posts par date de création, et les passe en attribut à la page JSP pour affichage.    
+// En résumé, ce servlet est un composant clé pour gérer l'affichage du feed des abonnements dans l'application, en fournissant des fonctionnalités pour récupérer et filtrer les posts en fonction des abonnements de l'utilisateur connecté, et en les affichant de manière structurée sur la page du feed des abonnements.               

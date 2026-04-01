@@ -87,3 +87,5 @@ public class FeedController extends HttpServlet {
     }
 
 }
+//  Ce servlet FeedController gère l'affichage du feed de l'application. Il vérifie d'abord que l'utilisateur est connecté avant de lui permettre d'accéder au feed. Ensuite, il récupère tous les posts depuis le repository et met à jour chaque post avec les informations sur l'auteur, si l'utilisateur suit l'auteur, et si l'utilisateur a aimé le post. Les posts sont ensuite triés par date de création, du plus récent au plus ancien, et passés en attribut à la page JSP pour affichage.
+// En résumé, ce servlet est un composant clé pour gérer l'affichage du feed dans  l'application, en fournissant des fonctionnalités pour récupérer et enrichir les posts avec des informations pertinentes pour l'utilisateur connecté, et en les affichant de manière structurée sur la page du feed.     

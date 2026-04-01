@@ -64,3 +64,8 @@
 
 </body>
 </html>
+
+//  Ce fichier JSP (comment.jsp) est utilisé pour afficher les détails d'un post spécifique, ainsi que les commentaires associés à ce post. 
+// Il récupère le post et les commentaires à partir des attributs de la requête, puis les affiche de manière structurée. 
+// Le fichier inclut également un formulaire pour permettre aux utilisateurs d'ajouter de nouveaux commentaires au post. 
+// En résumé, ce fichier est essentiel pour fournir une interface utilisateur permettant de visualiser les détails d'un post et d'interagir avec les commentaires associés.           

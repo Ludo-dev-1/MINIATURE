@@ -35,3 +35,7 @@ public class App {
         
     }
 }
+// Ce code est la classe principale de l'application qui configure et démarre un serveur Tomcat embarqué. 
+// Il définit le port d'écoute, ajoute une application web à partir du dossier "src/main/webapp", et configure les ressources pour inclure les classes compilées de l'application. 
+// Enfin, il démarre le serveur et attend les requêtes entrantes. 
+// En résumé, cette classe est essentielle pour lancer l'application web en utilisant Tomcat comme serveur d'application.         

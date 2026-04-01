@@ -70,3 +70,6 @@ public class InMemoryPostRepository implements PostRepository {
                 return null;    
         }
 }
+        // Cette classe InMemoryPostRepository est une implémentation de l'interface PostRepository qui utilise une base de données en mémoire pour stocker les posts. Elle initialise la base de données avec quelques posts de test et fournit des méthodes pour trouver tous les posts, enregistrer un post, et trouver un post par son identifiant.
+        // En résumé, cette classe InMemoryPostRepository est un composant clé pour gérer les posts dans l'application, en fournissant une implémentation concrète de PostRepository qui utilise une base de données en mémoire pour stocker et récupérer les posts.    
+        

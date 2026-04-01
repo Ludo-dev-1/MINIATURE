@@ -239,3 +239,7 @@ public final class comment_jsp extends org.apache.jasper.runtime.HttpJspBase
     }
   }
 }
+// Ce code est la classe Java générée automatiquement par le moteur de JSP de Tomcat à partir du fichier JSP "comment.jsp".
+// Cette classe étend HttpJspBase et implémente les interfaces nécessaires pour gérer les dépendances, les imports et les directives de la page JSP.
+// La méthode _jspService est la méthode principale qui traite les requêtes HTTP GET et POST pour la page "comment.jsp". Elle récupère les attributs de la requête pour le post et les commentaires, formate les dates, et génère le contenu HTML pour afficher les détails du post, les commentaires associés, et un formulaire pour ajouter de nouveaux commentaires.
+// En résumé, cette classe est un composant clé pour gérer les interactions avec la page "comment.jsp", en fournissant la logique nécessaire pour afficher les détails d'un post et ses commentaires, ainsi que pour permettre aux utilisateurs d'ajouter de nouveaux commentaires. 

@@ -122,3 +122,7 @@ public class CommentController extends HttpServlet {
     }
 
 }
+
+// Ce servlet CommentController gère les opérations liées aux commentaires dans l'application. Il permet d'afficher les commentaires associés à un post spécifique et de permettre aux utilisateurs connectés d'ajouter de nouveaux commentaires. Les commentaires sont stockés dans une liste en mémoire, et le servlet utilise le contexte de la servlet pour partager cette liste à travers différentes requêtes.
+// La méthode doGet récupère les commentaires pour un post donné et les affiche sur une page de détail du post, tandis que la méthode doPost permet aux utilisateurs de soumettre de nouveaux commentaires, qui sont ensuite ajoutés à la liste et affichés sur la même page.
+// En résumé, ce servlet est un composant clé pour gérer les interactions des utilisateurs avec les commentaires dans l'application, en fournissant des fonctionnalités pour afficher et ajouter des commentaires de manière structurée.    

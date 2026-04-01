@@ -88,3 +88,6 @@ public class User {
                 '}';
     }
 }
+// Cette classe User représente un utilisateur dans l'application. Elle contient des propriétés telles que le nom d'utilisateur, le mot de passe, l'email, et des listes pour les utilisateurs suivis et les posts aimés. Les méthodes de la classe permettent de gérer les actions de suivi et de like, ainsi que d'accéder et de modifier les propriétés de l'utilisateur.
+// Cette classe peut être utilisée pour gérer les utilisateurs dans l'application, en permettant de créer, récupérer et manipuler les utilisateurs de manière structurée. Par exemple, vous pouvez utiliser cette classe pour afficher les informations d'un utilisateur, pour permettre à un utilisateur de suivre ou de ne plus suivre un autre utilisateur, ou pour permettre à un utilisateur d'aimer ou de ne plus aimer un post existant.       
+// En résumé, la classe User est un composant clé pour représenter les utilisateurs dans l'application, en fournissant une structure pour gérer les propriétés et les actions des utilisateurs de manière organisée.    

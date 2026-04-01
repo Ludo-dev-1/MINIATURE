@@ -235,3 +235,8 @@ public final class feed_jsp extends org.apache.jasper.runtime.HttpJspBase
     }
   }
 }
+  // Ce code est la classe Java générée automatiquement par le moteur de JSP de Tomcat à partir du fichier JSP "feed.jsp".
+  // Cette classe étend HttpJspBase et implémente les interfaces nécessaires pour gérer les dépendances, les imports et les directives de la page JSP.      
+  // La méthode _jspService est la méthode principale qui traite les requêtes HTTP GET et POST pour la page "feed.jsp". Elle récupère la liste des posts à partir des attributs de la requête, et génère le contenu HTML pour afficher le fil d'actualité principal de l'application MINIATURE, en incluant des fonctionnalités pour suivre les auteurs des posts, liker les posts, et accéder aux commentaires associés à chaque post. Le fichier inclut également un formulaire pour permettre aux utilisateurs de créer de nouveaux posts.
+  // En résumé, cette classe est un composant clé pour gérer les interactions avec la page "feed.jsp", en fournissant la logique nécessaire pour afficher le fil d'actualité, d'interagir avec les posts, et de créer de nouveaux contenus dans l'application MINIATURE.  
+  

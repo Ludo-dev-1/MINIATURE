@@ -45,3 +45,6 @@ public class RegisterController extends HttpServlet {
         }
     }
 }
+
+// Ce servlet RegisterController gère les opérations d'inscription des utilisateurs dans l'application. Il utilise un service d'inscription (RegisterService) pour créer de nouveaux utilisateurs. La méthode doGet affiche la page d'inscription, tandis que la méthode doPost traite les informations d'inscription soumises par l'utilisateur. Si l'inscription est réussie, l'utilisateur est redirigé vers la page de connexion. Sinon, il est redirigé vers la page d'inscription avec un paramètre d'erreur.    
+// En résumé, ce servlet est un composant clé pour gérer les processus d'inscription des utilisateurs dans l'application, en utilisant le service d'inscription pour créer de nouveaux utilisateurs et en gérant les redirections appropriées en fonction du résultat de l'inscription.     

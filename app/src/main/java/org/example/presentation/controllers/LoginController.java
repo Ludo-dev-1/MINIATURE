@@ -48,4 +48,6 @@ public class LoginController extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/register");
         }
     }
-}
+}   
+// Ce servlet LoginController gère les opérations de connexion des utilisateurs dans l'application. Il utilise un service d'authentification (Authservice) pour vérifier les informations d'identification de l'utilisateur. La méthode doGet affiche la page de connexion, tandis que la méthode doPost traite les informations de connexion soumises par l'utilisateur. Si les informations sont valides, l'utilisateur est stocké dans la session et redirigé vers le feed. Sinon, il est redirigé vers la page d'inscription.    
+// En résumé, ce servlet est un composant clé pour gérer les processus de connexion des utilisateurs dans l'application, en utilisant le service d'authentification pour vérifier les informations d'identification et en gérant les redirections appropriées en fonction du résultat de la connexion.      

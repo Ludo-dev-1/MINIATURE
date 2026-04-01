@@ -61,3 +61,7 @@ public class PostController extends HttpServlet {
     }
 
 }
+
+// Ce servlet PostController gère les opérations liées à la création de nouveaux posts dans l'application. La méthode doPost vérifie d'abord que l'utilisateur est connecté avant de lui permettre de créer un post. Ensuite, elle récupère le contenu du post et l'utilisateur courant, vérifie que le contenu n'est pas vide, et crée un nouveau post avec un identifiant unique, l'identifiant de l'auteur, la date de création, et le nom de l'auteur. Enfin, elle enregistre le nouveau post dans le repository et redirige l'utilisateur vers le feed pour éviter les resoumissions de formulaire.    
+// En résumé, ce servlet est un composant clé pour gérer la création de nouveaux posts dans l'application, en fournissant des fonctionnalités pour vérifier la connexion de l'utilisateur, valider le contenu du post, et enregistrer le post de manière structurée dans le repository.     
+

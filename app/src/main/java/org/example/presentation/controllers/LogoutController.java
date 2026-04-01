@@ -22,3 +22,6 @@ public class LogoutController extends HttpServlet {
         resp.sendRedirect(req.getContextPath() + "/login");
     }
 }
+
+// Ce servlet LogoutController gère les opérations de déconnexion des utilisateurs dans l'application. La méthode doGet invalide la session de l'utilisateur actuel, ce qui le déconnecte de l'application, puis redirige l'utilisateur vers la page de connexion.
+// En résumé, ce servlet est un composant clé pour gérer les processus de déconnexion des utilisateurs dans l'application, en assurant que la session de l'utilisateur est correctement invalidée et en redirigeant l'utilisateur vers la page de connexion après la déconnexion.       
