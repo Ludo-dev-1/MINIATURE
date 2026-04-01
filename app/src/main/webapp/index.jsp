@@ -11,8 +11,3 @@
 </body>
 
 </html>
-
-// Ce fichier JSP (index.jsp) est la page d'accueil de l'application MINIATURE. 
-// Il affiche un message de bienvenue et une brève description de l'application.      
-// En résumé, ce fichier est essentiel pour fournir une interface utilisateur d'accueil pour les visiteurs de l'application MINIATURE.  
-

@@ -2,6 +2,8 @@ package org.example.domain.entity;
 
 import java.time.LocalDateTime ;
 
+import org.example.infrastructure.InMemoryDatabase;
+
 public abstract class Post {
 
     private long id;
@@ -70,9 +72,7 @@ public abstract class Post {
     }
 
     public static int size() {
-        // Cette méthode est un placeholder et doit être implémentée pour retourner le nombre total de posts
-        // Cela pourrait impliquer d'accéder à une base de données ou à un repository pour compter les posts existants
-        return 0; // Retourne 0 pour l'instant, à remplacer par la logique réelle de comptage des posts
+        return InMemoryDatabase.getInstance().size(Post.class);
     }
 
     public abstract long getPostId();

@@ -61,7 +61,3 @@
 
                 </html>
 
-// Ce fichier JSP (feed.jsp) est utilisé pour afficher le fil d'actualité principal de l'application MINIATURE.
-// Il récupère la liste des posts à partir des attributs de la requête et les affiche de manière structurée, en incluant des fonctionnalités pour suivre les auteurs des posts, liker les posts, et accéder aux commentaires associés à chaque post.
-// Le fichier inclut également un formulaire pour permettre aux utilisateurs de créer de nouveaux posts.    
-// En résumé, ce fichier est essentiel pour fournir une interface utilisateur permettant de visualiser le fil d'actualité, d'interagir avec les posts, et de créer de nouveaux contenus dans l'application MINIATURE.   

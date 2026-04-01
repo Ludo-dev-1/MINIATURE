@@ -52,8 +52,3 @@ if (posts != null && !posts.isEmpty()) {
 
 </body>
 </html>
-
-// Ce fichier JSP (feedSubscription.jsp) est utilisé pour afficher le fil d'actualité des abonnements de l'utilisateur dans l'application MINIATURE.
-// Il récupère la liste des posts des abonnements à partir des attributs de la requête et les affiche de manière structurée, en incluant des fonctionnalités pour suivre les auteurs des posts, liker les posts, et accéder aux commentaires associés à chaque post.
-// Le fichier inclut également un lien pour retourner au feed principal.        
-// En résumé, ce fichier est essentiel pour fournir une interface utilisateur permettant de visualiser le fil d'actualité des abonnements, d'interagir avec les posts, et de naviguer entre le feed principal et le feed des abonnements dans l'application MINIATURE.  
