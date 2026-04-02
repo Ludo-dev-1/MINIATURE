@@ -3,7 +3,7 @@ package org.example.presentation.controllers;
 import java.io.IOException;
 import java.util.List;
 
-import org.example.application.usecase.GetFeedUseCase;
+import org.example.application.services.GetFeedUseCase;
 import org.example.domain.entity.Post;
 import org.example.domain.entity.User;
 import org.example.domain.repositories.PostRepository;

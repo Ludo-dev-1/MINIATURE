@@ -1,4 +1,4 @@
-package org.example.application.usecase;
+package org.example.application.services;
 
 import java.time.LocalDateTime;
 
@@ -8,7 +8,9 @@ import org.example.domain.entity.User;
 import org.example.domain.repositories.PostRepository;
 
 public class CreatePostUseCase {
-    // Le cas d'utilisation de création de post gère le processus de création d'un nouveau post. Il vérifie que l'utilisateur est connecté et que le contenu du post n'est pas vide avant de créer un nouvel objet Post et de le sauvegarder dans le PostRepository.
+    // Le cas d'utilisation de création de post gère le processus de création d'un nouveau post.
+    // Il vérifie que l'utilisateur est connecté et que le contenu du post n'est pas vide avant 
+    // de créer un nouvel objet Post et de le sauvegarder dans le PostRepository.
     private final PostRepository postRepository;
 
     public CreatePostUseCase(PostRepository postRepository) {
@@ -24,7 +26,7 @@ public class CreatePostUseCase {
                 .mapToLong(Post::getId)
                 .max()
                 .orElse(0L) + 1L;
-
+        
         Post newPost = new Comment(
                 content.trim(),
                 author.getUserId(),

@@ -2,7 +2,7 @@ package org.example.presentation.controllers;
 
 import java.io.IOException;
 
-import org.example.application.usecase.CreatePostUseCase;
+import org.example.application.services.CreatePostUseCase;
 import org.example.domain.entity.User;
 import org.example.domain.repositories.PostRepository;
 import org.example.infrastructure.adapter.RepositoryAdapter;

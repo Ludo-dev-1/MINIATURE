@@ -76,5 +76,8 @@ public final class RepositoryAdapter {
         context.setAttribute("comments", comments);
     }
 }
-// Cette classe RepositoryAdapter est un composant clé pour gérer les repositories dans l'application. Elle fournit des méthodes statiques pour obtenir les instances de UserRepository et PostRepository à partir du contexte de la servlet, en utilisant des attributs pour stocker les instances. Si une instance n'existe pas encore, elle est créée et stockée dans le contexte. De plus, cette classe synchronise les données des repositories avec les attributs du contexte pour assurer que les données sont accessibles à travers le contexte de la servlet.
-// En résumé, la classe RepositoryAdapter facilite l'accès aux repositories dans l'application en utilisant le contexte de la servlet pour stocker et gérer les instances des repositories, tout en assurant que les données sont synchronisées et accessibles à travers le contexte.   
+// Cette classe RepositoryAdapter est un composant clé pour gérer les repositories dans l'application.
+//  Elle fournit des méthodes statiques pour obtenir les instances de UserRepository et PostRepository et CommentRepository à partir du contexte de la servlet, en utilisant des attributs pour stocker les instances.
+//  Si une instance n'existe pas encore, elle est créée et stockée dans le contexte. De plus, cette classe synchronise les données des repositories avec les attributs du contexte pour assurer que les données sont accessibles à travers le contexte de la servlet.
+// En résumé, la classe RepositoryAdapter facilite l'accès aux repositories dans l'application en utilisant le contexte de la servlet pour stocker et gérer les instances des repositories, 
+// tout en assurant que les données sont synchronisées et accessibles à travers le contexte.   

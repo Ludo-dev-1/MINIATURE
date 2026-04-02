@@ -82,7 +82,7 @@ public class CommentController extends HttpServlet {
         // on récupère l'utilisateur courant pour lui permettre de créer un commentaire
         User currentUser = recupUserInSession(req);
 
-        // Récupère le contenu du commentaire et le postId
+        // Récupère le contenu du commentaire et l'utilisateur courant
         String content = req.getParameter("content");
         long postId = Long.parseLong(req.getParameter("postId"));
 
@@ -90,17 +90,25 @@ public class CommentController extends HttpServlet {
         Comment newComment = new Comment(
                 content,
                 currentUser.getUserId(),
-                0, // L'ID sera assigné par le repository
+            0,
                 LocalDateTime.now(),
                 currentUser.getUsername(),
                 false);
         newComment.setPostId(postId);
 
-        // Sauvegarde le commentaire via le repository
+        // Persiste le commentaire via le repository
         commentRepository.save(newComment);
 
-        // Redirection vers la page de détail du post
+        // Redirection vers la page de détail du post (CommentController gère postId)
         resp.sendRedirect(req.getContextPath() + "/comments?postId=" + postId);
     }
 
 }
+
+// Ce servlet CommentController gère les opérations liées aux commentaires dans l'application. Il permet d'afficher les commentaires associés à un post
+// spécifique et de permettre aux utilisateurs connectés d'ajouter de nouveaux commentaires. Les commentaires sont stockés dans une liste en mémoire, et le
+// servlet utilise le contexte de la servlet pour partager cette liste à travers différentes requêtes.
+// La méthode doGet récupère les commentaires pour un post donné et les affiche sur une page de détail du post, tandis que la méthode doPost permet aux
+// utilisateurs de soumettre de nouveaux commentaires, qui sont ensuite ajoutés à la liste et affichés sur la même page.
+// En résumé, ce servlet est un composant clé pour gérer les interactions des utilisateurs avec les commentaires dans l'application, en fournissant des
+// fonctionnalités pour afficher et ajouter des commentaires de manière structurée.

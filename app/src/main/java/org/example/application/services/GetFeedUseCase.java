@@ -1,4 +1,4 @@
-package org.example.application.usecase;
+package org.example.application.services;
 
 import java.util.Comparator;
 import java.util.HashMap;
