@@ -10,18 +10,34 @@ import org.apache.catalina.webresources.DirResourceSet;
 import org.apache.catalina.webresources.StandardRoot;
 
 public class App {
+    private static File firstExistingPath(String... candidates) {
+        for (String candidate : candidates) {
+            File file = new File(candidate);
+            if (file.exists() && file.canRead()) {
+                return file;
+            }
+        }
+        throw new IllegalStateException("No readable path found for candidates: " + String.join(", ", candidates));
+    }
+
     public static void main(String[] args) throws LifecycleException {
 
         Tomcat tomcat = new Tomcat();
         tomcat.setPort(8080);
         tomcat.getConnector();
 
-        File webContentFolder = new File("src/main/webapp");
+        File webContentFolder = firstExistingPath(
+            "src/main/webapp",
+            "app/src/main/webapp",
+            "src/main/java/org/example/presentation/webapp",
+            "app/src/main/java/org/example/presentation/webapp");
 
         Context ctx = tomcat.addWebapp("", webContentFolder.getAbsolutePath());
         ctx.setReloadable(true);
 
-        File classesFolder = new File("build/classes/java/main");
+        File classesFolder = firstExistingPath(
+            "build/classes/java/main",
+            "app/build/classes/java/main");
         WebResourceRoot resources = new StandardRoot(ctx);
         resources.addPreResources(new DirResourceSet(
                 resources,
